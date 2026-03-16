@@ -1,0 +1,14 @@
+# ignore_fields.txt
+#
+# List field IDs to exclude from comparisons, one per line.
+# Rules:
+#   - Ignoring a field also ignores ALL its subfields (e.g. NET.1200.DE.022
+#     also suppresses NET.1200.DE.022.SE.001, .SE.002, etc.)
+#   - A field is only ignored when it is PRESENT IN BOTH files/messages.
+#     If a field is absent in one of the two, it is always reported.
+#   - Lines starting with # are comments; blank lines are ignored.
+#
+# Examples (uncomment to activate):
+NET.1200.DE.022
+NET.1200.B001
+# NET.1200.DE.048.SE.F048-01
