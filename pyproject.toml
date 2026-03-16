@@ -1,0 +1,10 @@
+[project]
+name = "bla-xml"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13.7"
+dependencies = [
+    "streamlit>=1.55.0",
+    "xmldiff>=2.7.0",
+]

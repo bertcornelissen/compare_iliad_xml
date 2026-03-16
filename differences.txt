@@ -1,0 +1,200 @@
+
+========================================================================================================================
+Message 1: [IPH.xml] Financial Request  vs  [WLPFO.xml] Financial Request
+========================================================================================================================
+  Field ID                               Name                                        IPH.xml                             WLPFO.xml                          
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------
+  NET.1200.B001                          bitmap                                      F230074100C19A20                    F234054100C19A22                   
+  NET.1200.B002                          bitmap                                      0000000000000003                    0000000000000002                   
+  NET.1200.DE.007                        Date and time, transmission                 0313070720                          0306063144                         
+  NET.1200.DE.011                        Systems Trace Audit Number                  000603                              002396                             
+  NET.1200.DE.012                        Date and time, local transaction            260313070720                        260306063144                       
+  NET.1200.DE.014                        Date, expiration                            <absent>                            3012                               
+  NET.1200.DE.022                        Point of service data code                  S10101512344                        510101512344                       
+  NET.1200.DE.022.SE.001                 Card data input capability                  S                                   5                                  
+  NET.1200.DE.023                        Card Sequence Number                        000                                 <absent>                           
+  NET.1200.DE.032                        Acquiring institution identification code   3030                                673805001                          
+  NET.1200.DE.041                        Card Acceptor Terminal Identification       IFIKA1                              FIM11101                           
+  NET.1200.DE.042                        Card Acceptor Identification Code           SITE01_________                     0148232655                         
+  NET.1200.DE.048                        Message control data elements               110400020000300030303030303030303030303034383838383333313034363031333535303638303232323039363733383035303031 1104000200003010303030303030303030363031343031314143202D204120383837303233313030313438323332363535303232323039363733383035303031303130
+  NET.1200.DE.048.SE.F048-01             Bitmap                                      1104000200003000                    1104000200003010                   
+  NET.1200.DE.048.SE.F048-14             PIN encryption methodology                  33                                  23                                 
+  NET.1200.DE.048.SE.F048-31             Merchant ID                                 4601355068                          0148232655                         
+  NET.1200.DE.048.SE.F048-4              Batch/sequence number                       0000000000                          0000000006                         
+  NET.1200.DE.048.SE.F048-60             Acceptance Data                             <absent>                            0                                  
+  NET.1200.DE.048.SE.F048-60.SF.001      mPOS Acceptance Device Type                 <absent>                            0                                  
+  NET.1200.DE.048.SE.F048-8              Customer data                               8888                                011AC - A 8870                     
+  NET.1200.DE.052                        PIN Data                                    65E467B5E7DAA76E                    5A6A7BF6DAF07D19                   
+  NET.1200.DE.053                        Security-Related Control Information        0101137CF3601B496C0E3947E63867B9BB522B00CA3338AD8E6BFE64A3E353853978 FFFF3101000000000055               
+  NET.1200.DE.053.SE.053.SF.F053-01      Key generation of master key                01                                  <absent>                           
+  NET.1200.DE.053.SE.053.SF.F053-02      Key version of master key                   01                                  <absent>                           
+  NET.1200.DE.053.SE.053.SF.F053-03      RNDMES                                      137CF3601B496C0E3947E63867B9BB52    <absent>                           
+  NET.1200.DE.053.SE.053.SF.F053-04      RNDPAC                                      2B00CA3338AD8E6BFE64A3E353853978    <absent>                           
+  NET.1200.DE.053.SE.DUKPT.SF.001        DUKPT BDK                                   <absent>                            FFFF310100                         
+  NET.1200.DE.053.SE.DUKPT.SF.002        DUKPT Counter                               <absent>                            0000000055                         
+  NET.1200.DE.055                        ICC system related data                     820219C08407A0000000291010950500000480009A032603135F2A0209789F02060000000032009F100706020103A000009F1A0205289F260812297BF3E4405E6B9F2701809F33030000009F34034403029F360208BC9F0D05fc50a000009F370416604575 820219C08407A0000000291010950500000400009A032603065F2A0209789F02060000000032009F100706020103A000009F1A0205289F260898C7ACD187DA42ED9F2701809F33030000009F34034403029F36020A279F0D05fc50a000009F370416B782FF
+  NET.1200.DE.055.TAG.95                 TVR( Terminal Verification Results )        0000048000                          0000040000                         
+  NET.1200.DE.055.TAG.9A                 Transaction Date                            260313                              260306                             
+  NET.1200.DE.055.TAG.9F26               App cryptogram (ARQC/TC)                    12297BF3E4405E6B                    98C7ACD187DA42ED                   
+  NET.1200.DE.055.TAG.9F36               Application Transaction Counter (ATC)       08BC                                0A27                               
+  NET.1200.DE.055.TAG.9F37               Unpredictable Number                        16604575                            16B782FF                           
+  NET.1200.DE.059                        Transport data                              0000000001000603IFIKA1              0000000001002396FIM11101           
+  NET.1200.DE.059.SE.F059-02             Transport data - systems trace audit number 000603                              002396                             
+  NET.1200.DE.059.SE.F059-03             Card Acceptor Terminal Identification       IFIKA1                              FIM11101                           
+  NET.1200.DE.063                        Product data                                <absent>                            S01201L1\0000200\0000200\1\        
+  NET.1200.DE.063.SE.F063-01             Service level                               <absent>                            S                                  
+  NET.1200.DE.063.SE.F063-02             Number of products                          <absent>                            01                                 
+  NET.1200.DE.063.SE.F063-PRODUCTS       Products                                    <absent>                            201L1\0000200\0000200\1\           
+  NET.1200.DE.063.SE.F063-PRODUCTS.SF.F063-P Product                                     <absent>                            201L1\0000200\0000200\1\           
+  NET.1200.DE.063.SE.F063-PRODUCTS.SF.F063-P.SF.F063-P01 Product code                                <absent>                            201                                
+  NET.1200.DE.063.SE.F063-PRODUCTS.SF.F063-P.SF.F063-P02 Unit of measure                             <absent>                            L                                  
+  NET.1200.DE.063.SE.F063-PRODUCTS.SF.F063-P.SF.F063-P03 Quantity                                    <absent>                            1                                  
+  NET.1200.DE.063.SE.F063-PRODUCTS.SF.F063-P.SF.F063-P04 Unit price                                  <absent>                            0000200                            
+  NET.1200.DE.063.SE.F063-PRODUCTS.SF.F063-P.SF.F063-P05 Amount                                      <absent>                            0000200                            
+  NET.1200.DE.063.SE.F063-PRODUCTS.SF.F063-P.SF.F063-P06 Tax Code                                    <absent>                            1                                  
+  NET.1200.DE.063.SE.F063-PRODUCTS.SF.F063-P.SF.F063-P07 Additional product code                     <absent>                            5C                                 
+  NET.1200.DE.127                        Encrypted Data                              303129BB0A59E28CB21306BA95713925EF52313434454244433942383934454637463236443546303330414639463636383643423633463944383433444346303430413535353036303737394243393335413233353533383035443643463630313533333141354138444635393143323832334138323641343438463939314631463942373539303639363633353939454643434341303535383537443734433432333336 303385c4d4d777ce734579355d2b3ecebd4c313434434139383746443046373245434230324531464131344339453137363235343931384638463730323136453436333441463841453634314542423839323646414138363631413430393631303043373036353636424336413434454430334446333941433442373032463736453746313230363632464236363335373439343034323734374532394342423434463531
+  NET.1200.DE.127.SE.001                 IFSF Security Profile                       01                                  03                                 
+  NET.1200.DE.127.SE.002                 DEK Random value                            29BB0A59E28CB21306BA95713925EF52    85c4d4d777ce734579355d2b3ecebd4c   
+  NET.1200.DE.127.SE.003                 Encrypted sensitive data                    02000F3337343234353030313735313030360E00043330313223002533373432343530303137353130303644333031323230313233303131323334353030303030 02000F3337343234353030313735313030360E00043330313223002533373432343530303137353130303644333031323230313233303131323334353030303030000000000000
+  NET.1200.DE.128                        MAC                                         60A9C4E515624C8B                    <absent>                           
+
+========================================================================================================================
+Message 2: [IPH.xml] Financial Response  vs  [WLPFO.xml] Financial Response
+========================================================================================================================
+  Field ID                               Name                                        IPH.xml                             WLPFO.xml                          
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------
+  NET.1210.B001                          bitmap                                      323080010EC18A21                    3230000106C18224                   
+  NET.1210.DE.007                        Date and time, transmission                 0313070720                          0306073146                         
+  NET.1210.DE.011                        Systems Trace Audit Number                  000603                              002396                             
+  NET.1210.DE.012                        Date and time, local transaction            260313070720                        260306063144                       
+  NET.1210.DE.017                        Date, Capture                               0313                                <absent>                           
+  NET.1210.DE.032                        Acquiring institution identification code   3030                                673805001                          
+  NET.1210.DE.037                        Retrieval Reference Number                  607207000105                        <absent>                           
+  NET.1210.DE.038                        Approval code                               213521                              674049                             
+  NET.1210.DE.041                        Card Acceptor Terminal Identification       IFIKA1                              FIM11101                           
+  NET.1210.DE.042                        Card Acceptor Identification Code           SITE01_________                     0148232655                         
+  NET.1210.DE.048                        Message control data elements               100000020000308030303030303030303030313034363031333535303638303232323039363733383035303031313932303034303030363033343030313639323538 1104000200003010303030303030303030363031343031314143202D204120383837303233313030313438323332363535303232323039363733383035303031303130
+  NET.1210.DE.048.SE.F048-01             Bitmap                                      1000000200003080                    1104000200003010                   
+  NET.1210.DE.048.SE.F048-14             PIN encryption methodology                  <absent>                            23                                 
+  NET.1210.DE.048.SE.F048-31             Merchant ID                                 4601355068                          0148232655                         
+  NET.1210.DE.048.SE.F048-4              Batch/sequence number                       0000000000                          0000000006                         
+  NET.1210.DE.048.SE.F048-57             Pre authorization Token                     2004000603400169258                 <absent>                           
+  NET.1210.DE.048.SE.F048-60             Acceptance Data                             <absent>                            0                                  
+  NET.1210.DE.048.SE.F048-60.SF.001      mPOS Acceptance Device Type                 <absent>                            0                                  
+  NET.1210.DE.048.SE.F048-8              Customer data                               <absent>                            011AC - A 8870                     
+  NET.1210.DE.053                        Security-Related Control Information        010192940105E31C2BD16DCC3BFB85D6B63AAFBEC4458A7DC8D519A7366201E69F42 <absent>                           
+  NET.1210.DE.053.SE.053.SF.F053-01      Key generation of master key                01                                  <absent>                           
+  NET.1210.DE.053.SE.053.SF.F053-02      Key version of master key                   01                                  <absent>                           
+  NET.1210.DE.053.SE.053.SF.F053-03      RNDMES                                      92940105E31C2BD16DCC3BFB85D6B63A    <absent>                           
+  NET.1210.DE.053.SE.053.SF.F053-04      RNDPAC                                      AFBEC4458A7DC8D519A7366201E69F42    <absent>                           
+  NET.1210.DE.055                        ICC system related data                     910A169976B3E44F7E333030            910A7065E5D222F397CB3030           
+  NET.1210.DE.055.TAG.91                 Issuer Authentication Data                  169976B3E44F7E333030                7065E5D222F397CB3030               
+  NET.1210.DE.059                        Transport data                              0000000001000603IFIKA1              0000000001002396FIM11101           
+  NET.1210.DE.059.SE.F059-02             Transport data - systems trace audit number 000603                              002396                             
+  NET.1210.DE.059.SE.F059-03             Card Acceptor Terminal Identification       IFIKA1                              FIM11101                           
+  NET.1210.DE.062                        Message Data                                <absent>                            000000                             
+  NET.1210.DE.062.SE.F062-1              Allowed product sets                        <absent>                            3030                               
+  NET.1210.DE.062.SE.F062-2              Device Type                                 <absent>                            0                                  
+  NET.1210.DE.062.SE.F062-3              Message text                                <absent>                            303030                             
+  NET.1210.DE.064                        Message Authentication Code (MAC)           8F8BFC43D361540A                    <absent>                           
+
+========================================================================================================================
+Message 3: [IPH.xml] Financial Request  vs  [WLPFO.xml] Financial Request
+========================================================================================================================
+  Field ID                               Name                                        IPH.xml                             WLPFO.xml                          
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------
+  NET.1220.B001                          bitmap                                      F23007410EC18B20                    F234054106C18B22                   
+  NET.1220.B002                          bitmap                                      0000000000000003                    0000000000000002                   
+  NET.1220.DE.007                        Date and time, transmission                 0313070725                          0306063148                         
+  NET.1220.DE.011                        Systems Trace Audit Number                  000604                              002397                             
+  NET.1220.DE.012                        Date and time, local transaction            260313070725                        260306063148                       
+  NET.1220.DE.014                        Date, expiration                            <absent>                            3012                               
+  NET.1220.DE.022                        Point of service data code                  S10101512344                        510101512344                       
+  NET.1220.DE.022.SE.001                 Card data input capability                  S                                   5                                  
+  NET.1220.DE.023                        Card Sequence Number                        000                                 <absent>                           
+  NET.1220.DE.032                        Acquiring institution identification code   3030                                673805001                          
+  NET.1220.DE.037                        Retrieval Reference Number                  607207000105                        <absent>                           
+  NET.1220.DE.038                        Approval code                               213521                              674049                             
+  NET.1220.DE.041                        Card Acceptor Terminal Identification       IFIKA1                              FIM11101                           
+  NET.1220.DE.042                        Card Acceptor Identification Code           SITE01_________                     0148232655                         
+  NET.1220.DE.048                        Message control data elements               1004000200003080303030303030303030303333313034363031333535303638303232323039363733383035303031313932303034303030363033343030313639323538 1104000200003010303030303030303030363031343031314143202D204120383837303233313030313438323332363535303232323039363733383035303031303130
+  NET.1220.DE.048.SE.F048-01             Bitmap                                      1004000200003080                    1104000200003010                   
+  NET.1220.DE.048.SE.F048-14             PIN encryption methodology                  33                                  23                                 
+  NET.1220.DE.048.SE.F048-31             Merchant ID                                 4601355068                          0148232655                         
+  NET.1220.DE.048.SE.F048-4              Batch/sequence number                       0000000000                          0000000006                         
+  NET.1220.DE.048.SE.F048-57             Pre authorization Token                     2004000603400169258                 <absent>                           
+  NET.1220.DE.048.SE.F048-60             Acceptance Data                             <absent>                            0                                  
+  NET.1220.DE.048.SE.F048-60.SF.001      mPOS Acceptance Device Type                 <absent>                            0                                  
+  NET.1220.DE.048.SE.F048-8              Customer data                               <absent>                            011AC - A 8870                     
+  NET.1220.DE.053                        Security-Related Control Information        0101391336C5227213EF32D5534317B128A4AE7D23622BEB7686B668624221194285 FFFF3101000000000055               
+  NET.1220.DE.053.SE.053.SF.F053-01      Key generation of master key                01                                  <absent>                           
+  NET.1220.DE.053.SE.053.SF.F053-02      Key version of master key                   01                                  <absent>                           
+  NET.1220.DE.053.SE.053.SF.F053-03      RNDMES                                      391336C5227213EF32D5534317B128A4    <absent>                           
+  NET.1220.DE.053.SE.053.SF.F053-04      RNDPAC                                      AE7D23622BEB7686B668624221194285    <absent>                           
+  NET.1220.DE.053.SE.DUKPT.SF.001        DUKPT BDK                                   <absent>                            FFFF310100                         
+  NET.1220.DE.053.SE.DUKPT.SF.002        DUKPT Counter                               <absent>                            0000000055                         
+  NET.1220.DE.055                        ICC system related data                     820219C08407A0000000291010950500000480009A032603135F2A0209789F02060000000032009F100706020103A000009F1A0205289F2608A529359CF7B587A39F2701809F33030000009F34034403029F360208BD9F0D05fc50a000009F3704304830AA 820219C08407A0000000291010950500000400009A032603065F2A0209789F02060000000032009F100706020103A000009F1A0205289F260807DF47BE8F680FDF9F2701809F33030000009F34034403029F36020A279F0D05fc50a000009F37042673C73C
+  NET.1220.DE.055.TAG.95                 TVR( Terminal Verification Results )        0000048000                          0000040000                         
+  NET.1220.DE.055.TAG.9A                 Transaction Date                            260313                              260306                             
+  NET.1220.DE.055.TAG.9F26               App cryptogram (ARQC/TC)                    A529359CF7B587A3                    07DF47BE8F680FDF                   
+  NET.1220.DE.055.TAG.9F36               Application Transaction Counter (ATC)       08BD                                0A27                               
+  NET.1220.DE.055.TAG.9F37               Unpredictable Number                        304830AA                            2673C73C                           
+  NET.1220.DE.056                        Original data elements                      1200000603260313070720              1200002396260306063144             
+  NET.1220.DE.056.SE.F056-02             Original systems trace audit number         000603                              002396                             
+  NET.1220.DE.056.SE.F056-03             Original date and time                      260313070720                        260306063144                       
+  NET.1220.DE.059                        Transport data                              0000000000000603IFIKA1              0000000001002396FIM11101           
+  NET.1220.DE.059.SE.F059-01             Transport data - batch number               0000000000                          0000000001                         
+  NET.1220.DE.059.SE.F059-02             Transport data - systems trace audit number 000603                              002396                             
+  NET.1220.DE.059.SE.F059-03             Card Acceptor Terminal Identification       IFIKA1                              FIM11101                           
+  NET.1220.DE.063                        Product data                                <absent>                            S01201L1\0000200\0000200\1\        
+  NET.1220.DE.063.SE.F063-01             Service level                               <absent>                            S                                  
+  NET.1220.DE.063.SE.F063-02             Number of products                          <absent>                            01                                 
+  NET.1220.DE.063.SE.F063-PRODUCTS       Products                                    <absent>                            201L1\0000200\0000200\1\           
+  NET.1220.DE.063.SE.F063-PRODUCTS.SF.F063-P Product                                     <absent>                            201L1\0000200\0000200\1\           
+  NET.1220.DE.063.SE.F063-PRODUCTS.SF.F063-P.SF.F063-P01 Product code                                <absent>                            201                                
+  NET.1220.DE.063.SE.F063-PRODUCTS.SF.F063-P.SF.F063-P02 Unit of measure                             <absent>                            L                                  
+  NET.1220.DE.063.SE.F063-PRODUCTS.SF.F063-P.SF.F063-P03 Quantity                                    <absent>                            1                                  
+  NET.1220.DE.063.SE.F063-PRODUCTS.SF.F063-P.SF.F063-P04 Unit price                                  <absent>                            0000200                            
+  NET.1220.DE.063.SE.F063-PRODUCTS.SF.F063-P.SF.F063-P05 Amount                                      <absent>                            0000200                            
+  NET.1220.DE.063.SE.F063-PRODUCTS.SF.F063-P.SF.F063-P06 Tax Code                                    <absent>                            1                                  
+  NET.1220.DE.063.SE.F063-PRODUCTS.SF.F063-P.SF.F063-P07 Additional product code                     <absent>                            5C                                 
+  NET.1220.DE.127                        Encrypted Data                              3031BC79EAB368D56A782100312A44929E3D313434383932393036423935324145433146334531343441434433453131314632363738353837463136373431343531433931313432303930383237453635384444314636454135313635423043354238313843433831394637394438413532414643363044453935454637303131443841313142363942304545423536314330333639324639433746313039323034373339 3033c031017b6b89c2b915e0ba642ac493b7313434434139383746443046373245434230324531464131344339453137363235343931384638463730323136453436333441463841453634314542423839323646414138363631413430393631303043373036353636424336413434454430334446333941433442373032463736453746313230363632464236363335373439343034323734374532394342423434463531
+  NET.1220.DE.127.SE.001                 IFSF Security Profile                       01                                  03                                 
+  NET.1220.DE.127.SE.002                 DEK Random value                            BC79EAB368D56A782100312A44929E3D    c031017b6b89c2b915e0ba642ac493b7   
+  NET.1220.DE.127.SE.003                 Encrypted sensitive data                    02000F3337343234353030313735313030360E00043330313223002533373432343530303137353130303644333031323230313233303131323334353030303030 02000F3337343234353030313735313030360E00043330313223002533373432343530303137353130303644333031323230313233303131323334353030303030000000000000
+  NET.1220.DE.128                        MAC                                         21124EBE166C27A4                    <absent>                           
+
+========================================================================================================================
+Message 4: [IPH.xml] Financial Response  vs  [WLPFO.xml] Financial Response
+========================================================================================================================
+  Field ID                               Name                                        IPH.xml                             WLPFO.xml                          
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------
+  NET.1230.B001                          bitmap                                      3230000106C18821                    3230000106C18020                   
+  NET.1230.DE.007                        Date and time, transmission                 0313070725                          0306073148                         
+  NET.1230.DE.011                        Systems Trace Audit Number                  000604                              002397                             
+  NET.1230.DE.012                        Date and time, local transaction            260313070725                        260306063148                       
+  NET.1230.DE.032                        Acquiring institution identification code   3030                                673805001                          
+  NET.1230.DE.038                        Approval code                               213521                              674049                             
+  NET.1230.DE.039                        Action code                                 000                                 901                                
+  NET.1230.DE.041                        Card Acceptor Terminal Identification       IFIKA1                              FIM11101                           
+  NET.1230.DE.042                        Card Acceptor Identification Code           SITE01_________                     0148232655                         
+  NET.1230.DE.048                        Message control data elements               100000020000380030303030303030303030313034363031333535303638303232323039363733383035303031303430303031 1104000200003010303030303030303030363031343031314143202D204120383837303233313030313438323332363535303232323039363733383035303031303130
+  NET.1230.DE.048.SE.F048-01             Bitmap                                      1000000200003800                    1104000200003010                   
+  NET.1230.DE.048.SE.F048-14             PIN encryption methodology                  <absent>                            23                                 
+  NET.1230.DE.048.SE.F048-31             Merchant ID                                 4601355068                          0148232655                         
+  NET.1230.DE.048.SE.F048-4              Batch/sequence number                       0000000000                          0000000006                         
+  NET.1230.DE.048.SE.F048-53             Acquirer Booking Period Number              0001                                <absent>                           
+  NET.1230.DE.048.SE.F048-60             Acceptance Data                             <absent>                            0                                  
+  NET.1230.DE.048.SE.F048-60.SF.001      mPOS Acceptance Device Type                 <absent>                            0                                  
+  NET.1230.DE.048.SE.F048-8              Customer data                               <absent>                            011AC - A 8870                     
+  NET.1230.DE.053                        Security-Related Control Information        01015D09E4FBD69A908E6EEBFAFC5FE38B4393B298E9B1F02BAB096BF6893413F416 <absent>                           
+  NET.1230.DE.053.SE.053.SF.F053-01      Key generation of master key                01                                  <absent>                           
+  NET.1230.DE.053.SE.053.SF.F053-02      Key version of master key                   01                                  <absent>                           
+  NET.1230.DE.053.SE.053.SF.F053-03      RNDMES                                      5D09E4FBD69A908E6EEBFAFC5FE38B43    <absent>                           
+  NET.1230.DE.053.SE.053.SF.F053-04      RNDPAC                                      93B298E9B1F02BAB096BF6893413F416    <absent>                           
+  NET.1230.DE.059                        Transport data                              0000000000000603IFIKA1              0000000001002396FIM11101           
+  NET.1230.DE.059.SE.F059-01             Transport data - batch number               0000000000                          0000000001                         
+  NET.1230.DE.059.SE.F059-02             Transport data - systems trace audit number 000603                              002396                             
+  NET.1230.DE.059.SE.F059-03             Card Acceptor Terminal Identification       IFIKA1                              FIM11101                           
+  NET.1230.DE.064                        Message Authentication Code (MAC)           D1E5F96C21ACAD7B                    <absent>                           
