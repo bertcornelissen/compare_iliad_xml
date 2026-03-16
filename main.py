@@ -38,15 +38,21 @@ def compare_messages(file1, file2):
         print(f"Message {i+1}: [{file1}] {m1['class']}  vs  [{file2}] {m2['class']}")
         print(f"{'='*120}")
         all_ids = sorted(set(m1['fields']) | set(m2['fields']))
+        diff_ids = {
+            fid for fid in all_ids
+            if m1['fields'].get(fid) != m2['fields'].get(fid)
+        }
         diffs = []
-        for fid in all_ids:
+        for fid in sorted(diff_ids):
+            # Skip parent fields whose difference is explained by differing subfields
+            if any(other.startswith(fid + '.') for other in diff_ids):
+                continue
             v1 = m1['fields'].get(fid)
             v2 = m2['fields'].get(fid)
-            if v1 != v2:
-                name = (v1 or v2)[0] if (v1 or v2) else fid
-                val1 = v1[1] if v1 else '<absent>'
-                val2 = v2[1] if v2 else '<absent>'
-                diffs.append((fid, name, val1, val2))
+            name = (v1 or v2)[0] if (v1 or v2) else fid
+            val1 = v1[1] if v1 else '<absent>'
+            val2 = v2[1] if v2 else '<absent>'
+            diffs.append((fid, name, val1, val2))
         if diffs:
             col1, col2, col3, col4 = 38, 43, 35, 35
             header = f"  {'Field ID':<{col1}} {'Name':<{col2}} {file1:<{col3}} {file2:<{col4}}"

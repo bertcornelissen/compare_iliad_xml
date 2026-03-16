@@ -29,18 +29,24 @@ def extract_messages(file) -> list[dict]:
 
 def build_diff_df(m1: dict, m2: dict, label1: str, label2: str) -> pd.DataFrame:
     all_ids = sorted(set(m1['fields']) | set(m2['fields']))
+    diff_ids = {
+        fid for fid in all_ids
+        if m1['fields'].get(fid) != m2['fields'].get(fid)
+    }
     rows = []
-    for fid in all_ids:
+    for fid in sorted(diff_ids):
+        # Skip parent fields whose difference is explained by differing subfields
+        if any(other.startswith(fid + '.') for other in diff_ids):
+            continue
         v1 = m1['fields'].get(fid)
         v2 = m2['fields'].get(fid)
-        if v1 != v2:
-            name = (v1 or v2)[0] if (v1 or v2) else fid
-            rows.append({
-                'Field ID': fid,
-                'Name': name,
-                label1: v1[1] if v1 else '〈absent〉',
-                label2: v2[1] if v2 else '〈absent〉',
-            })
+        name = (v1 or v2)[0] if (v1 or v2) else fid
+        rows.append({
+            'Field ID': fid,
+            'Name': name,
+            label1: v1[1] if v1 else '〈absent〉',
+            label2: v2[1] if v2 else '〈absent〉',
+        })
     return pd.DataFrame(rows)
 
 
