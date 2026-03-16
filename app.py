@@ -53,14 +53,15 @@ def is_ignored(fid: str, ignore_set: set[str] | frozenset[str]) -> bool:
 
 
 def build_diff_df(m1: dict, m2: dict, label1: str, label2: str,
-                  ignore_set: set[str] | frozenset[str] = frozenset()) -> tuple[pd.DataFrame, int]:
+                  ignore_set: set[str] | frozenset[str] = frozenset(),
+                  show_all: bool = False) -> tuple[pd.DataFrame, int]:
     all_ids = sorted(set(m1['fields']) | set(m2['fields']))
     diff_ids = {
         fid for fid in all_ids
         if m1['fields'].get(fid) != m2['fields'].get(fid)
     }
     # Ignore a field only when it is present in both; absence must always be reported
-    visible_ids = {
+    visible_diff_ids = {
         fid for fid in diff_ids
         if not (
             is_ignored(fid, ignore_set)
@@ -68,11 +69,14 @@ def build_diff_df(m1: dict, m2: dict, label1: str, label2: str,
             and m2['fields'].get(fid) is not None
         )
     }
-    suppressed = len(diff_ids) - len(visible_ids)
+    suppressed = len(diff_ids) - len(visible_diff_ids)
+    # When show_all, also include equal fields (never suppressed)
+    candidate_ids = set(all_ids) if show_all else visible_diff_ids
     rows = []
-    for fid in sorted(visible_ids):
+    for fid in sorted(candidate_ids):
+        is_diff = fid in visible_diff_ids
         # Skip parent fields whose difference is explained by differing subfields
-        if any(other.startswith(fid + '.') for other in visible_ids):
+        if is_diff and any(other.startswith(fid + '.') for other in visible_diff_ids):
             continue
         v1 = m1['fields'].get(fid)
         v2 = m2['fields'].get(fid)
@@ -82,6 +86,7 @@ def build_diff_df(m1: dict, m2: dict, label1: str, label2: str,
             'Name': name,
             label1: v1[1] if v1 else '〈absent〉',
             label2: v2[1] if v2 else '〈absent〉',
+            '_diff': is_diff,
         })
     return pd.DataFrame(rows), suppressed
 
@@ -100,6 +105,8 @@ with st.sidebar:
         st.rerun()
     apply_ignore = st.checkbox("Apply ignore list", value=True,
                                help="Uncheck to compare all fields without any exclusions.")
+    show_all = st.checkbox("Show all fields", value=False,
+                           help="Show equal fields alongside differences.")
     if ignore_set:
         st.code("\n".join(sorted(ignore_set)), language=None)
         st.caption(
@@ -133,27 +140,55 @@ if file1 and file2:
 
         m1, m2 = msgs1[i], msgs2[i]
         active_ignore = ignore_set if apply_ignore else frozenset()
-        df, suppressed = build_diff_df(m1, m2, label1, label2, active_ignore)
-        indicator = "🔴" if not df.empty else "✅"
+        df, suppressed = build_diff_df(m1, m2, label1, label2, active_ignore, show_all)
+        diff_count = df['_diff'].sum() if not df.empty and '_diff' in df.columns else 0
+        indicator = "🔴" if diff_count else "✅"
         header = (
             f"{indicator} Message {i+1} — "
             f"`{label1}`: **{m1['class']}** (src: {m1['source']})  ↔  "
             f"`{label2}`: **{m2['class']}** (src: {m2['source']})"
         )
-        with st.expander(header, expanded=(i == 0 or not df.empty)):
-            if df.empty:
+        with st.expander(header, expanded=(i == 0 or bool(diff_count))):
+            if diff_count == 0 and not show_all:
                 st.success("No differences found." + (
                     f" ({suppressed} suppressed by ignore list)" if suppressed else ""
                 ))
             else:
                 note = f" — {suppressed} suppressed by ignore list" if suppressed else ""
-                st.markdown(f"**{len(df)} differing field(s)**{note}")
+                if show_all:
+                    st.markdown(f"**{len(df)} field(s)** ({diff_count} differing){note}")
+                else:
+                    st.markdown(f"**{diff_count} differing field(s)**{note}")
 
-                def highlight_absent(val):
-                    return 'color: #aaa; font-style: italic;' if val == '〈absent〉' else ''
+                display_df = df.drop(columns=['_diff']) if '_diff' in df.columns else df
+                diff_flags = df['_diff'] if '_diff' in df.columns else pd.Series([True] * len(df), index=df.index)
+
+                def highlight_all(row, flags=diff_flags, lbl1=label1, lbl2=label2):
+                    green_soft  = 'background-color: rgba(46,204,113,0.72)'
+                    red_soft    = 'background-color: rgba(231,76,60,0.72)'
+                    orange_soft = 'background-color: rgba(243,156,18,0.72)'
+                    is_d = flags.loc[row.name]
+                    styles = []
+                    for col in row.index:
+                        if col not in (lbl1, lbl2):
+                            styles.append('')
+                        elif not is_d:
+                            styles.append('color: #aaa; font-style: italic;' if row[col] == '〈absent〉' else '')
+                        else:
+                            v1, v2 = row[lbl1], row[lbl2]
+                            if v1 == '〈absent〉' and v2 != '〈absent〉':
+                                # Added: colour only the new-value column
+                                styles.append(green_soft if col == lbl2 else 'color: #aaa; font-style: italic;')
+                            elif v1 != '〈absent〉' and v2 == '〈absent〉':
+                                # Removed: colour only the old-value column
+                                styles.append(red_soft if col == lbl1 else 'color: #aaa; font-style: italic;')
+                            else:
+                                # Changed: colour both value columns
+                                styles.append(orange_soft)
+                    return styles
 
                 st.dataframe(
-                    df.style.map(highlight_absent, subset=[label1, label2]),
+                    display_df.style.apply(highlight_all, axis=1),
                     width="stretch",
                     hide_index=True,
                 )
