@@ -1,5 +1,7 @@
 import xml.etree.ElementTree as ET
 import os
+import re
+from functools import lru_cache
 import pandas as pd
 import streamlit as st
 
@@ -37,8 +39,17 @@ def load_ignore_set() -> set[str]:
         return set()
 
 
+@lru_cache(maxsize=None)
+def _pattern_regex(pattern: str) -> re.Pattern:
+    """Compile a field-ID pattern to a regex. * matches any single dot-delimited segment.
+    Also matches subfields (anything after a further dot)."""
+    escaped = re.escape(pattern)
+    regex_str = escaped.replace(r'\*', r'[^.]+')
+    return re.compile('^' + regex_str + r'(\..+)?$')
+
+
 def is_ignored(fid: str, ignore_set: set[str] | frozenset[str]) -> bool:
-    return fid in ignore_set or any(fid.startswith(p + '.') for p in ignore_set)
+    return any(_pattern_regex(p).match(fid) for p in ignore_set)
 
 
 def build_diff_df(m1: dict, m2: dict, label1: str, label2: str,
@@ -87,6 +98,8 @@ with st.sidebar:
     st.header("Ignored fields")
     if st.button("↺ Refresh", help="Reload ignore_fields.txt"):
         st.rerun()
+    apply_ignore = st.checkbox("Apply ignore list", value=True,
+                               help="Uncheck to compare all fields without any exclusions.")
     if ignore_set:
         st.code("\n".join(sorted(ignore_set)), language=None)
         st.caption(
@@ -119,14 +132,15 @@ if file1 and file2:
             continue
 
         m1, m2 = msgs1[i], msgs2[i]
-        df, suppressed = build_diff_df(m1, m2, label1, label2, ignore_set)
+        active_ignore = ignore_set if apply_ignore else frozenset()
+        df, suppressed = build_diff_df(m1, m2, label1, label2, active_ignore)
         indicator = "🔴" if not df.empty else "✅"
         header = (
             f"{indicator} Message {i+1} — "
             f"`{label1}`: **{m1['class']}** (src: {m1['source']})  ↔  "
             f"`{label2}`: **{m2['class']}** (src: {m2['source']})"
         )
-        with st.expander(header, expanded=(i == 0)):
+        with st.expander(header, expanded=(i == 0 or not df.empty)):
             if df.empty:
                 st.success("No differences found." + (
                     f" ({suppressed} suppressed by ignore list)" if suppressed else ""
