@@ -8,3 +8,6 @@ wheels/
 
 # Virtual environments
 .venv
+
+# For comparison ignored fields.
+ignored_fields.txt

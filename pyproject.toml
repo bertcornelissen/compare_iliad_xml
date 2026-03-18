@@ -1,7 +1,7 @@
 [project]
-name = "compare_ifsf_iliad"
+name = "compare_iliad_xml"
 version = "0.1.0"
-description = "Compare Iliad xml files containing IFSF messages"
+description = "Compare Iliad xml files containing IFSF/CTAP messages"
 readme = "README.md"
 requires-python = ">=3.13.7"
 dependencies = [

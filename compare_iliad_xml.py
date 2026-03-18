@@ -5,8 +5,8 @@ from functools import lru_cache
 import pandas as pd
 import streamlit as st
 
-st.set_page_config(page_title="EMVCo XML Diff", layout="wide")
-st.title("EMVCo XML File Comparator")
+st.set_page_config(page_title="Compare Iliad XML reports", layout="wide")
+st.title("Iliad XML Report Compare")
 
 
 def extract_messages(file) -> list[dict]:
@@ -31,7 +31,7 @@ def extract_messages(file) -> list[dict]:
 
 
 def load_ignore_set() -> set[str]:
-    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ignore_fields.txt')
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ignored_fields.txt')
     try:
         with open(path) as f:
             return {line.strip() for line in f if line.strip() and not line.strip().startswith('#')}
@@ -93,15 +93,17 @@ def build_diff_df(m1: dict, m2: dict, label1: str, label2: str,
 
 col1, col2 = st.columns(2)
 with col1:
-    file1 = st.file_uploader("Upload first XML file", type=["xml", "emvco"], key="f1")
+    # To allow all file types, set type=None. Streamlit does not support '*' wildcard directly.
+    file1 = st.file_uploader("Upload first XML file", type=None, key="f1")
 with col2:
-    file2 = st.file_uploader("Upload second XML file", type=["xml", "emvco"], key="f2")
+    # To allow all file types, set type=None. Streamlit does not support '*' wildcard directly.
+    file2 = st.file_uploader("Upload second XML file", type=None, key="f2")
 
 ignore_set = load_ignore_set()
 
 with st.sidebar:
     st.header("Ignored fields")
-    if st.button("↺ Refresh", help="Reload ignore_fields.txt"):
+    if st.button("↺ Refresh", help="Reload ignored_fields.txt"):
         st.rerun()
     apply_ignore = st.checkbox("Apply ignore list", value=True,
                                help="Uncheck to compare all fields without any exclusions.")
@@ -114,7 +116,7 @@ with st.sidebar:
             "(and their subfields) are excluded from the diff."
         )
     else:
-        st.info("No fields ignored. Add entries to `ignore_fields.txt`.")
+        st.info("No fields ignored. Add entries to `ignored_fields.txt`.")
 
 if file1 and file2:
     try:
@@ -148,7 +150,7 @@ if file1 and file2:
             f"`{label1}`: **{m1['class']}** (src: {m1['source']})  ↔  "
             f"`{label2}`: **{m2['class']}** (src: {m2['source']})"
         )
-        with st.expander(header, expanded=(i == 0 or bool(diff_count))):
+        with st.expander(header, expanded=False):
             if diff_count == 0 and not show_all:
                 st.success("No differences found." + (
                     f" ({suppressed} suppressed by ignore list)" if suppressed else ""
@@ -191,6 +193,7 @@ if file1 and file2:
                     display_df.style.apply(highlight_all, axis=1),
                     width="stretch",
                     hide_index=True,
+                    height=(len(display_df) + 1) * 35 + 3,
                 )
 else:
     st.info("Upload both XML files above to start the comparison.")
