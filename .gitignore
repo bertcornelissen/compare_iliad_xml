@@ -10,4 +10,4 @@ wheels/
 .venv
 
 # For comparison ignored fields.
-ignored_fields.txt
+/ignored_fields.txt
