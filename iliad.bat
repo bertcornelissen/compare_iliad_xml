@@ -19,7 +19,7 @@ SET PYTHONUTF8=1
 REM ---- Ensure ignored_fields file exist ----
 IF NOT EXIST "%APP_DIR%\ignored_fields.txt" (
     echo Copying samples\ignored_fields.txt to ignored_fields.txt...
-    copy "%APP_DIR%\samples\ignored_fields.txt" "%APP_DIR%\ignored_fields.yaml"
+    copy "%APP_DIR%\samples\ignored_fields.txt" "%APP_DIR%\ignored_fields.txt"
 )
 
 REM ---- Check Python ----
