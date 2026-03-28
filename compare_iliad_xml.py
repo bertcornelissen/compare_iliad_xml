@@ -73,13 +73,22 @@ def build_diff_df(m1: dict, m2: dict, label1: str, label2: str,
     # When show_all, also include equal fields (never suppressed)
     candidate_ids = set(all_ids) if show_all else visible_diff_ids
     rows = []
+    shown_absent_ids: set[str] = set()  # group IDs shown as absent in one file
     for fid in sorted(candidate_ids):
         is_diff = fid in visible_diff_ids
-        # Skip parent fields whose difference is explained by differing subfields
-        if is_diff and any(other.startswith(fid + '.') for other in visible_diff_ids):
-            continue
         v1 = m1['fields'].get(fid)
         v2 = m2['fields'].get(fid)
+        if is_diff:
+            if v1 is not None and v2 is not None:
+                # Value difference: skip parent when subfields explain the change
+                if any(other.startswith(fid + '.') for other in visible_diff_ids):
+                    continue
+            else:
+                # Presence difference: skip child when an ancestor group is already shown absent
+                parts = fid.split('.')
+                if any('.'.join(parts[:d]) in shown_absent_ids for d in range(1, len(parts))):
+                    continue
+                shown_absent_ids.add(fid)
         name = (v1 or v2)[0] if (v1 or v2) else fid
         rows.append({
             'Field ID': fid,
