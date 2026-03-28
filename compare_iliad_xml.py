@@ -70,6 +70,18 @@ def build_diff_df(m1: dict, m2: dict, label1: str, label2: str,
         )
     }
     suppressed = len(diff_ids) - len(visible_diff_ids)
+    # Propagate suppression upward: if all differing children of a parent were suppressed by the
+    # ignore list, suppress the parent too (process deepest fields first so cascading works).
+    suppressed_ids = diff_ids - visible_diff_ids
+    for fid in sorted(visible_diff_ids, key=lambda x: x.count('.'), reverse=True):
+        v1_chk = m1['fields'].get(fid)
+        v2_chk = m2['fields'].get(fid)
+        if v1_chk is not None and v2_chk is not None:  # value diff (not presence diff)
+            diff_children = {c for c in diff_ids if c.startswith(fid + '.')}
+            if diff_children and diff_children.issubset(suppressed_ids):
+                visible_diff_ids = visible_diff_ids - {fid}
+                suppressed_ids.add(fid)
+    suppressed = len(diff_ids) - len(visible_diff_ids)
     # When show_all, also include equal fields (never suppressed)
     candidate_ids = set(all_ids) if show_all else visible_diff_ids
     rows = []
